@@ -1,0 +1,25 @@
+
+.outer-block {
+  background-color:black;
+}
+
+.outer-block-row {
+  /*background-color:black;*/
+}
+
+.outer-block-data {
+  /*background-color:black;*/
+}
+
+.inner-block {
+  background-color:grey;
+}
+
+.inner-block-row {
+  /*background-color:black;*/
+}
+
+.inner-block-data {
+  /*background-color:black;*/
+}
+
