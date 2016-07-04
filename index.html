@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
     <script src="puzzles.js"></script>
+    <script src="sudoku_solver.js"></script>
     <script src="sudoku.js"></script>
   </head>
 <body>
@@ -22,8 +23,12 @@
     </div>
     <br>
     <input type=submit name="solve" value="solve" onclick="solve()"/>
+    <input type=submit name="test1" value="test1" onclick="getTest1()"/>
+    <input type=submit name="test2" value="test2" onclick="getTest2()"/>
+    <input type=submit name="clear" value="clear" onclick="resetPuzzel()"/>
     <br>
 
+    <div id="solution"></div>
   </center>
 
 </body>

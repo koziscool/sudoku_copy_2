@@ -1,8 +1,10 @@
 
-var test_grid2 = "4.....8.5.3..........7......2.....6.....8.4......1.......6.3.7.5..2.....1.4......";
 
 var solve = function() {
   console.log( "solve" );
+  $solution = $('#solution');
+  $solution.append('<div>solving real soon now</div>')
+
 };
 
 var pick = function() {
@@ -10,10 +12,39 @@ var pick = function() {
 };
 
 
-var gridIndex = function( outerRow, outerCol, innerRow, innerCol) {
-  var row = 3 * outerRow + innerRow;
-  var col = 3 * outerCol + innerCol;
-  return 3 * row + col;
+
+var readGrid = function() {
+
+};
+
+var setGrid = function( gridStr ) {
+  if (!gridStr || gridStr.length < 81){
+    alert("Invalid grid");
+    return;
+  }
+
+  for (var i = 0; i < rows.length; i++){
+    for (var j = 0; j < cols.length; j++){
+      var id = rows[i] + cols[j];
+
+      var cellValue = gridStr.charAt( 9*i + j );
+      var cellElement = document.getElementById(id);
+      cellElement.value = cellValue;
+    }
+  }
+} 
+
+
+var getTest1 = function() {
+  setGrid( testGrid1 );
+};
+
+var getTest2 = function() {
+  setGrid( testGrid2 );
+};
+
+var resetGrid = function() {
+
 };
 
 
@@ -37,18 +68,15 @@ var innerBlock = function( outerRow, outerCol ) {
   for(var i=0; i<3; i++){
     var $row = $('<tr>').addClass('inner-block-row');
     for(var j=0; j<3; j++){
-      // var $col = $('<td>').addClass('inner-block-data').text( (3*i +j + 1).toString() );
       var $col = $('<td>');
 
-      var index = gridIndex( outerRow, outerCol, i, j );
-      var cellData = test_grid2[index];
-      if (cellData === ".") {
-        cellData = "";
-      }
+      var rowIndex = 3 * outerRow + i;
+      var colIndex = 3 * outerCol + j;
 
-      var inputString = '<input type="text" maxlength="1" size="1" class="cell-input" " value="'  + cellData + '"/>;'
+      var id = rows[rowIndex] + cols[colIndex];
+      var inputString = 
+          '<input type="text" maxlength="1" size="1" class="cell-input" id="' + id + '"  value=""/>';
       var $input = $(inputString);
-
       $col.append($input);
       $row.append($col);
     }
@@ -57,15 +85,14 @@ var innerBlock = function( outerRow, outerCol ) {
   return $table;
 };
 
-
 var drawPuzzle = function() {
   console.log( "draw" );
   var $puzzleGrid = $('#puzzle-grid');
   $puzzleGrid.append( outerBlock() );
 };
 
-
 $( document ).ready(function(){
   drawPuzzle();
+
 });
 
