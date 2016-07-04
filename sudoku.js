@@ -5,20 +5,26 @@ var solve = function() {
   console.log( "solve" );
 };
 
-
 var pick = function() {
   console.log( "pick" );
 };
 
 
-// this is imperative, could refactor to function later
+var gridIndex = function( outerRow, outerCol, innerRow, innerCol) {
+  var row = 3 * outerRow + innerRow;
+  var col = 3 * outerCol + innerCol;
+  return 3 * row + col;
+};
+
+
+// these are imperative, could refactor to functional later
 var outerBlock = function() {
   var $table = $('<table>').addClass('outer-block');
   for(var i=0; i<3; i++){
     var $row = $('<tr>').addClass('outer-block-row');
     for(var j=0; j<3; j++){
       var $col = $('<td>').addClass('outer-block-data');
-      $col.append( innerBlock() );
+      $col.append( innerBlock(i, j) );
       $row.append( $col );
     }
     $table.append($row);
@@ -26,7 +32,7 @@ var outerBlock = function() {
   return $table;
 }
 
-var innerBlock = function() {
+var innerBlock = function( outerRow, outerCol ) {
   var $table = $('<table>').addClass('inner-block');
   for(var i=0; i<3; i++){
     var $row = $('<tr>').addClass('inner-block-row');
@@ -34,8 +40,13 @@ var innerBlock = function() {
       // var $col = $('<td>').addClass('inner-block-data').text( (3*i +j + 1).toString() );
       var $col = $('<td>');
 
-      var cellData =  (3*i +j + 1).toString();
-      var inputString = '<input type="text" maxlength="1" size="1" " value="'  + cellData + '"/>;'
+      var index = gridIndex( outerRow, outerCol, i, j );
+      var cellData = test_grid2[index];
+      if (cellData === ".") {
+        cellData = "";
+      }
+
+      var inputString = '<input type="text" maxlength="1" size="1" class="cell-input" " value="'  + cellData + '"/>;'
       var $input = $(inputString);
 
       $col.append($input);
@@ -49,14 +60,12 @@ var innerBlock = function() {
 
 var drawPuzzle = function() {
   console.log( "draw" );
-
   var $puzzleGrid = $('#puzzle-grid');
   $puzzleGrid.append( outerBlock() );
 };
 
+
 $( document ).ready(function(){
-
   drawPuzzle();
-
 });
 
