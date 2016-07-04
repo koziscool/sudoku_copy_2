@@ -11,10 +11,17 @@ var pick = function() {
   console.log( "pick" );
 };
 
-
-
 var readGrid = function() {
-
+  var gridStr = "";
+  for (var i = 0; i < rows.length; i++){
+    for (var j = 0; j < cols.length; j++){
+      var id = rows[i] + cols[j];
+      var cellElement = document.getElementById(id);
+      gridStr += (cellElement.value == "" ? "." : cellElement.value);
+    }
+  }
+  console.log(gridStr);
+  return gridStr;
 };
 
 var setGrid = function( gridStr ) {
@@ -28,6 +35,8 @@ var setGrid = function( gridStr ) {
       var id = rows[i] + cols[j];
 
       var cellValue = gridStr.charAt( 9*i + j );
+      if (cellValue === ".")
+        cellValue = "";
       var cellElement = document.getElementById(id);
       cellElement.value = cellValue;
     }
@@ -44,7 +53,13 @@ var getTest2 = function() {
 };
 
 var resetGrid = function() {
-
+  for (var i = 0; i < rows.length; i++){
+    for (var j = 0; j < cols.length; j++){
+      var id = rows[i] + cols[j];
+      var cellElement = document.getElementById(id);
+      cellElement.value = "";
+    }
+  }
 };
 
 
@@ -93,6 +108,6 @@ var drawPuzzle = function() {
 
 $( document ).ready(function(){
   drawPuzzle();
-
+  getTest2();
 });
 
