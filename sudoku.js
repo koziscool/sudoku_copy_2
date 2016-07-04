@@ -2,9 +2,16 @@
 
 var solve = function() {
   console.log( "solve" );
+
+  var gridStr = readGrid();
+  solution = search( parse_grid(gridStr) );
+
+  console.log( "solution", solution );
+
+  console.log( convertToGridStr( solution ) );
+
   $solution = $('#solution');
   $solution.append('<div>solving real soon now</div>')
-
 };
 
 var pick = function() {
