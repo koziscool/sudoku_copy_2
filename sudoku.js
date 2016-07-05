@@ -4,6 +4,8 @@ var solve = function() {
   console.log( "solve" );
 
   var gridStr = readGrid();
+
+  console.log( "gridvalues", gridValues(gridStr) );
   solution = search( parse_grid(gridStr) );
 
   console.log( "solution", solution );

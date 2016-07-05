@@ -1,4 +1,12 @@
 
+var dict = function(keys, values) {
+  var result = {};
+  $.each(keys, function(i, key) {
+    result[key] = values[i];
+  });
+  return result;
+}
+
 var cross = function(A, B){
   var C = [];
   for (var a in A) 
@@ -21,7 +29,12 @@ var convertToValuesObj = function( grid ) {
 
   console.log( "convert", values);
   return values;
+};
+
+function gridValues(grid) {
+    return dict(squares, grid)
 }
+
 
 var convertToGridStr = function( valuesObj ) {
   var gridStr = "";
@@ -37,6 +50,6 @@ var convertToGridStr = function( valuesObj ) {
     }
   }
   return gridStr;
-}
+};
 
 
